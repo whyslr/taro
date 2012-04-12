@@ -1,0 +1,20 @@
+1、项目运行设置
+框架内定设置参数有以下几个(请参考config.php里面的$_CONFIG['demo']的值进行填写;支持创建多个项目)
+1) app_root 项目根目录只填名称不需带路径
+2) app_dirs 项目代码文件需要分存在那几个目录只填名称不需带路径多个目录用,分隔第一个目录会成为项目的默认目录
+3) app_suffix 项目URL自定义后缀
+4) app_tpl_dir 项目模版文件存放目录只填名称不需带路径
+5) app_cache_dir 项目缓存文件存放目录只填名称不需带路径
+非以上参数,将视为用户的自定义设置参数。填写好各项值后直接访问*/taro存放目录，框架将会自动创建好相应的目录结构
+
+2、项目目录结构
+框架内定目录有以下几个
+1)	./app/$_CONFIG[*]['app_root']/lib 该目录存放自定义的类文件(文件名规则类名.class.php).诸如自己的工具类、月光宝盒什么的都往这丢
+2) ./app/$_CONFIG[*]['app_root']/$_CONFIG[*]['app_cache_dir']/tpl 该目录存放模版引擎编译后的中间文件
+
+3、项目入口文件./lib/taro.php
+主要接口方法有以下几个
+1) taro::tpl () 模版操作类接口、该接口支持连惯操作见./app/demo/front/index.php;类方法明细见(lib/core/taro/tpl.php)
+2) taro::url ($data ) 将数组转换成taro可识别的URL;$data = array('block' => string/*请求的目录*/, 'file' => string/*请求的文件*/, array(* => *)/*要传送的参数*/);类方法明细见(lib/core/taro/tpl.php)
+
+PS:获取当前请求页面的参数值方法还是原样用$_GET、$_REQUEST、$_POST、....(亲)
